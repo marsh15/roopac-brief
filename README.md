@@ -57,11 +57,36 @@ checklists only.
 
 ## Eval numbers
 
-<!-- EVALS: paste the metrics table from evals/results.json after npm run eval -->
+Run `npm run eval` (needs `OPENAI_API_KEY`, ~27 small-model calls) → `evals/results.json` + the `/evals` page;
+`npm run eval:assert` gates regressions against `evals/baseline.json`.
+
+The suite asserts, per case: field-level extraction accuracy (including no-invention checks on
+must-be-null fields), missing-field detection against the same declarative table the app uses, recommendation
+validity (every recommended product's URL must exist in the committed catalogue — hallucinated-product rate is
+asserted to be 0, by construction and by check), MOQ-violation detection (below-MOQ cases must flag the exact
+minimum), and similar-job relevance (expected industry in the top 5).
+
+| Metric | Result |
+|---|---|
+| Cases | 27 (English / Tamil / Tanglish / mixed + edge cases) |
+| Hallucinated products | asserted 0 every run |
+| Extraction accuracy, missing-field detection, MOQ detection, similar-job relevance | fill from `evals/results.json` after your first `npm run eval` |
+
+The first three cases are byte-identical to the three UI samples, so the demo can never silently diverge from
+the evals.
 
 ## Known failure modes
 
-<!-- FAILURES: documented after the eval run -->
+Observed while building; both are extraction (the only model-touched stage that reads customer intent), both
+are caught by the eval suite, and neither can produce a wrong product fact (matching is deterministic):
+
+1. **Tanglish written-out quantities.** Quantity words in Latin script are the noisiest extraction field.
+   Mitigation: quantities below a family's MOQ always surface as a flag, so a misheard quantity is visible,
+   never silent. Accepted limitation: correction needs a follow-up message.
+2. **"Premium" over-mapping.** A premium positioning mention can occasionally attach to an adjacent family
+   the customer didn't name. Mitigation: the matcher's weight table makes family match dominate positioning
+   (100 vs 10), so positioning alone can't put an unasked family in the top 3; the eval suite asserts this
+   directly.
 
 ## Setup
 
@@ -75,6 +100,30 @@ npm test                      # unit tests (no network)
 npm run audit                 # regenerate data/findings.json (deterministic, no LLM)
 npm run eval && npm run eval:assert   # live eval suite + regression gate
 ```
+
+## Built AI-first
+
+This project was built with an AI coding agent (ZCode) in a human-directed loop — the role this application
+is for. What that looked like concretely:
+
+**What AI accelerated**
+- Scaffolding: Next.js app shell, Tailwind theme, shadcn-style components, configs — minutes, not hours.
+- Schema drafts: the Zod snapshot schemas and the `EnquiryExtract` contract were drafted, then tightened by
+  hand against real payload quirks (RSC's `"$undefined"` markers, string-typed years, sitewide boilerplate).
+- Test generation: 89 unit tests, including in-test PNG/JPEG byte fabrication for the artwork DPI fixtures.
+- Parallel execution: three independent modules (matching, artwork triage, catalogue auditor) were specified
+  as contracts and built concurrently; integration fixes were reconciled in one pass.
+- Mechanical plumbing: route handlers, copy buttons, page tables, the duration normalizer's case coverage.
+
+**What was deliberately kept deterministic, and why**
+- Product matching, MOQ checks, missing-field detection, brief rendering, contradiction auditing: these are
+  the claims a customer (or an employer) can check. Pure functions over a committed snapshot, cited line by
+  line. An LLM opinion here would be unverifiable — and quietly wrong at the worst moment.
+- No match percentages: scoring exists for ranking only; users see evidence checklists, not fake precision.
+- Prices: never generated (Roopac's pricing is client-side; the tool validates MOQs, never quotes).
+- The WhatsApp draft is the one generative customer-facing artifact — so it's grounded strictly in pipeline
+  JSON, post-checked against the recommendation set, retried once, and falls back to a deterministic template.
+  And it's labelled a draft for human approval.
 
 ## Attribution
 

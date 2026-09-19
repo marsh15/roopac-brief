@@ -74,9 +74,17 @@ export default function Builder() {
       setResult(data);
       setBuilding(false);
       // One network call — so the stages light up in sequence only once the
-      // response has actually landed. Honest, just staggered.
-      for (let i = 1; i <= STAGES.length; i++) {
-        cascadeTimers.current.push(setTimeout(() => setStagesDone(i), i * 140));
+      // response has actually landed. Honest, just staggered. Under reduced
+      // motion the whole sequence lands at once.
+      const reduceMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) {
+        setStagesDone(STAGES.length);
+      } else {
+        for (let i = 1; i <= STAGES.length; i++) {
+          cascadeTimers.current.push(setTimeout(() => setStagesDone(i), i * 60));
+        }
       }
 
       if (typeof window !== "undefined" && window.innerWidth < 1024) {
@@ -109,7 +117,7 @@ export default function Builder() {
         });
       }
     } catch {
-      setError({ code: "network", message: "Could not reach the brief API — check the server and try again." });
+      setError({ code: "network", message: "Could not reach the brief API. Check the server and try again." });
       setBuilding(false);
     }
   }, [message, building]);
@@ -120,7 +128,7 @@ export default function Builder() {
         fileName: file.name,
         triage: null,
         checking: false,
-        error: "That file is over the 10 MB limit — export smaller, or share a Canva/Drive link with sales.",
+        error: "That file is over the 10 MB limit. Export smaller, or share a Canva or Drive link with sales.",
       });
       return;
     }
@@ -192,9 +200,9 @@ function ErrorBanner({ error }: { error: ApiError }) {
       </p>
       <p className="mt-1.5 text-sm leading-relaxed">{error.message}</p>
       {missingKey && (
-        <p className="mt-2 text-[13px] leading-relaxed text-ink-3">
+        <p className="mt-2 text-[13px] leading-relaxed text-ink-2">
           Add <code className="font-mono">OPENAI_API_KEY</code> to{" "}
-          <code className="font-mono">.env.local</code> and restart the dev server — extraction makes
+          <code className="font-mono">.env.local</code> and restart the dev server. Extraction makes
           one small-model call per build.
         </p>
       )}
@@ -206,18 +214,18 @@ function EmptyState({ onPickSample }: { onPickSample: (message: string) => void 
   return (
     <div className="rounded-xl border border-dashed border-line px-6 py-16 text-center">
       <p className="font-serif text-[22px] tracking-tight">Nothing built yet.</p>
-      <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-ink-3">
-        Paste a customer enquiry on the left — messy, Tamil or Tanglish, half-finished — attach
-        artwork if you have it, and press Build brief. Or start from a sample:
+      <p className="mx-auto mt-3 max-w-md text-pretty text-[15px] leading-relaxed text-ink-2">
+        Paste a customer enquiry into the composer (messy, Tamil or Tanglish, half-finished),
+        attach artwork if you have it, then press Build brief. Or start from a sample:
       </p>
-      <div className="mt-5 flex flex-wrap justify-center gap-2">
+      <div className="mt-5 flex flex-wrap justify-center gap-3">
         {FIXTURES.map((f) => (
           <Button
             key={f.id}
             type="button"
             variant="outline"
             size="sm"
-            className="h-7 px-2.5 text-xs"
+            className="hit h-7 px-2.5 text-xs"
             title={f.message}
             onClick={() => onPickSample(f.message)}
           >

@@ -35,10 +35,10 @@ export default function StageTracker({
             <span
               className={cn(
                 "w-16 text-right",
-                isDone ? "text-sage" : isActive ? "animate-pulse text-ink-3" : "text-ink-3/60",
+                isDone ? "text-sage" : isActive ? "animate-pulse text-ink-3" : "text-ink-3",
               )}
             >
-              {isDone ? "done" : isActive ? "in flight" : "—"}
+              {isDone ? "done" : isActive ? "in flight" : "queued"}
             </span>
           </li>
         );

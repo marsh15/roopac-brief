@@ -40,7 +40,7 @@ export default function Composer({
         >
           Customer enquiry
         </Label>
-        <span className="font-mono text-[10px] text-ink-3">
+        <span className="font-mono text-[10px] tabular-nums text-ink-3">
           {message.length}/{MAX_MESSAGE}
         </span>
       </div>
@@ -49,12 +49,12 @@ export default function Composer({
         value={message}
         maxLength={MAX_MESSAGE}
         onChange={(e) => onMessageChange(e.target.value)}
-        placeholder="Paste it as it arrived — messy, Tamil or Tanglish, half-finished…"
+        placeholder="Paste it as it arrived: messy, Tamil or Tanglish, half-finished…"
         disabled={building}
         className="mt-2 min-h-[168px] resize-y border-line bg-transparent text-[15px] leading-relaxed focus-visible:ring-ring"
       />
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-3">
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3">Samples</span>
         {FIXTURES.map((f) => (
           <Button
@@ -62,7 +62,7 @@ export default function Composer({
             type="button"
             variant="outline"
             size="sm"
-            className="h-7 px-2.5 text-xs"
+            className="hit h-7 px-2.5 text-xs"
             title={f.message}
             onClick={() => onMessageChange(f.message)}
           >
@@ -90,13 +90,13 @@ export default function Composer({
           type="button"
           variant="outline"
           size="sm"
-          className="h-7"
+          className="hit h-7"
           onClick={() => fileInput.current?.click()}
         >
           <Paperclip /> Attach artwork
         </Button>
         <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-3">
-          PNG · JPG · PDF · AI · EPS · PSD · ≤ 10 MB
+          PNG, JPG, PDF, AI, EPS or PSD, up to 10 MB
         </span>
       </div>
 
@@ -114,12 +114,14 @@ export default function Composer({
         <div className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 rounded-lg border border-line px-3 py-2">
           <VerdictBadge verdict={artwork.triage.verdict} />
           <span className="min-w-0 truncate font-mono text-xs text-ink-3">
-            {artwork.triage.filename ?? "link"} · {artwork.triage.checks.length} checks · full result below
+            {artwork.triage.filename ?? "link"} · {artwork.triage.checks.length} checks (full result
+            below)
           </span>
           <button
             type="button"
             onClick={onArtworkClear}
-            className="ml-auto inline-flex shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-ink-3 underline-offset-2 hover:text-ink hover:underline"
+            aria-label="Remove artwork"
+            className="hit ml-auto inline-flex shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-ink-3 underline-offset-2 transition-colors duration-150 ease-out hover:text-ink hover:underline"
           >
             <X className="size-3" /> Remove
           </button>

@@ -9,10 +9,10 @@ export default function Home() {
           <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 pb-5">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-ink-3">
-                ROOPAC · Tiruppur · custom print &amp; packaging
+                ROOPAC · custom print &amp; packaging, Tiruppur
               </p>
               <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                <h1 className="font-serif text-[30px] font-semibold leading-none tracking-tight">
+                <h1 className="font-serif text-[30px] font-semibold leading-none tracking-tight text-balance">
                   Roopac Brief
                 </h1>
                 <p className="text-sm text-ink-3">Enquiry → grounded job brief.</p>
@@ -40,13 +40,13 @@ export default function Home() {
           <div aria-hidden className="mt-[3px] border-t border-ink/25" />
         </header>
 
-        <main>
+        <main id="main">
           <Builder />
         </main>
 
         <footer className="border-t border-line py-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
-            Prototype · grounded in the committed roopac.com snapshot · no prices, no promises
+            Prototype · grounded in the committed roopac.com snapshot. No prices, no promises.
           </p>
         </footer>
       </div>

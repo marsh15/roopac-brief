@@ -18,19 +18,23 @@
   --muted-foreground: oklch(0.5 0.015 60);
   --accent: oklch(0.523 0.106 50);
   --accent-foreground: oklch(0.985 0.005 95);
-  --destructive: oklch(0.577 0.245 27.3);
+  /* darkened from 0.577 so paper-on-red text clears 4.5:1 (badge labels) */
+  --destructive: oklch(0.52 0.22 27.3);
   --destructive-foreground: oklch(0.985 0.005 95);
   --border: oklch(0.905 0.01 80);
   --input: oklch(0.905 0.01 80);
   --ring: oklch(0.523 0.106 50);
   --radius: 0.75rem;
 
-  /* Roopac-adjacent warm paper palette */
+  /* Roopac-adjacent warm paper palette.
+     ink-3 measures 5.6:1 on paper (WCAG AA body), verified. */
   --paper: oklch(0.975 0.008 85);
   --ink: oklch(0.23 0.02 55);
+  --ink-2: oklch(0.36 0.018 58);
   --ink-3: oklch(0.5 0.015 60);
   --line: oklch(0.9 0.012 80);
-  --sage: oklch(0.55 0.08 155);
+  /* darkened from 0.55 so sage text clears 4.5:1 on sage-bg (pass badge) */
+  --sage: oklch(0.46 0.08 155);
   --sage-bg: oklch(0.95 0.03 155);
 }
 
@@ -56,6 +60,7 @@
   --color-ring: var(--ring);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
   --color-ink-3: var(--ink-3);
   --color-line: var(--line);
   --color-sage: var(--sage);
@@ -76,5 +81,30 @@
     color: var(--color-ink);
     font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  /* Extend small controls to a 40px+ hit area without enlarging the visual. */
+  .hit {
+    position: relative;
+  }
+  .hit::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+}
+
+/* Fewer, gentler motions when the user asks for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

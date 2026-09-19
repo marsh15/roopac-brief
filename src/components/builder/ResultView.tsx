@@ -58,7 +58,7 @@ export default function ResultView({
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
               {result.jobNumber} · plain text
             </span>
-            <CopyButton text={result.brief} toastText="Brief copied" />
+            <CopyButton text={result.brief} label="Copy brief" toastText="Brief copied" />
           </div>
           <pre className="max-h-[520px] overflow-auto whitespace-pre-wrap px-5 py-4 font-mono text-[12.5px] leading-[1.7]">
             {result.brief}
@@ -88,14 +88,14 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-8">
-      <div className="flex items-center gap-3">
-        <span aria-hidden className="font-mono text-[10px] text-ink-3">
+      <div className="flex items-baseline gap-3">
+        <span aria-hidden className="font-mono text-[11px] text-ink-3">
           {index}
         </span>
-        <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-ink-3">
+        <h2 className="font-serif text-[21px] font-semibold leading-snug tracking-tight text-ink">
           {title}
         </h2>
-        <span aria-hidden className="flex-1 border-t border-line" />
+        <span aria-hidden className="mt-3 flex-1 self-start border-t border-line" />
       </div>
       <div className="mt-4">{children}</div>
     </section>
@@ -132,8 +132,8 @@ function Understood({ result }: { result: PipelineResult }) {
             <dt className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-3">
               {row.label}
             </dt>
-            <dd className="text-sm leading-relaxed">
-              {row.value ?? <span className="text-ink-3">—</span>}
+            <dd className="text-sm leading-relaxed tabular-nums">
+              {row.value ?? <span className="text-ink-3">not provided</span>}
               {row.label === "Deadline" && ambiguousDeadline && (
                 <span className="ml-2 inline-block rounded-full border border-accent/40 px-2 py-px align-middle font-mono text-[9px] uppercase tracking-[0.12em] text-accent">
                   confirm exact date
@@ -143,7 +143,7 @@ function Understood({ result }: { result: PipelineResult }) {
           </div>
         ))}
       </dl>
-      {e.notes && <p className="mt-3 text-sm italic leading-relaxed text-ink-3">Note — {e.notes}</p>}
+      {e.notes && <p className="mt-3 text-sm italic leading-relaxed text-ink-2">Note: {e.notes}</p>}
       {result.timelineNote && (
         <p className="mt-3 rounded-lg border border-accent/30 bg-accent/5 px-3.5 py-2.5 text-[13px] leading-relaxed">
           {result.timelineNote}
@@ -179,7 +179,7 @@ function Recommendations({ result }: { result: PipelineResult }) {
   if (result.recommendations.length === 0) {
     return (
       <p className="rounded-xl border border-dashed border-line bg-card p-5 text-sm text-ink-3">
-        No recommendation ran — the extract was empty.
+        No recommendation ran: the extract was empty.
       </p>
     );
   }
@@ -196,8 +196,8 @@ function Recommendations({ result }: { result: PipelineResult }) {
       </ol>
       {rest.length > 0 && (
         <details className="group mt-4">
-          <summary className="flex w-fit cursor-pointer list-none items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-3 transition-colors hover:text-ink [&::-webkit-details-marker]:hidden">
-            <span aria-hidden className="inline transition-transform group-open:rotate-45">+</span>
+          <summary className="hit flex w-fit cursor-pointer list-none items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink-3 transition-colors duration-150 ease-out hover:text-ink [&::-webkit-details-marker]:hidden">
+            <span aria-hidden className="inline transition-transform duration-200 ease-out group-open:rotate-45">+</span>
             {rest.length} more ranked catalogue matches
           </summary>
           <ol className="mt-4 space-y-4">
@@ -221,7 +221,7 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
     p.leadTime ? `lead ${p.leadTime}` : null,
   ]
     .filter(Boolean)
-    .join(" · ");
+    .join(", ");
 
   return (
     <li className="rounded-xl border border-line bg-card p-5">
@@ -233,13 +233,13 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
           className="group inline-flex items-center gap-1 font-serif text-[19px] font-semibold tracking-tight underline-offset-4 hover:underline"
         >
           {p.name}
-          <ArrowUpRight className="size-3.5 opacity-40 transition-opacity group-hover:opacity-100" />
+          <ArrowUpRight className="size-3.5 opacity-40 transition-opacity duration-150 ease-out group-hover:opacity-100" />
         </a>
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3">
           {p.familyLabel}
         </span>
       </div>
-      {p.tagline && <p className="mt-1 text-sm italic leading-relaxed text-ink-3">{p.tagline}</p>}
+      {p.tagline && <p className="mt-1 text-sm italic leading-relaxed text-ink-2">{p.tagline}</p>}
       <p className="mt-2.5 font-mono text-xs leading-relaxed text-ink-3">{spec}</p>
 
       {(rec.evidence.length > 0 || rec.flags.length > 0) && (
@@ -293,16 +293,16 @@ function SimilarJobs({ result }: { result: PipelineResult }) {
             className="group inline-flex w-fit items-center gap-1 font-serif text-[16px] font-semibold tracking-tight underline-offset-4 hover:underline"
           >
             {record.brandName}
-            <ArrowUpRight className="size-3 opacity-40 transition-opacity group-hover:opacity-100" />
+            <ArrowUpRight className="size-3 opacity-40 transition-opacity duration-150 ease-out group-hover:opacity-100" />
           </a>
           <p className="mt-1 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-ink-3">
-            {[record.category, record.city, record.caseNumber].filter(Boolean).join(" · ")}
+            {[record.category, record.city, record.caseNumber].filter(Boolean).join(", ")}
           </p>
           {reasons.length > 0 && (
             <ul className="mt-2.5 space-y-1">
               {reasons.map((reason) => (
-                <li key={reason} className="flex gap-1.5 text-[13px] leading-relaxed text-ink-3">
-                  <span aria-hidden>—</span>
+                <li key={reason} className="flex gap-1.5 text-[13px] leading-relaxed text-ink-2">
+                  <span aria-hidden className="text-ink-3">·</span>
                   <span>{reason}</span>
                 </li>
               ))}
@@ -311,13 +311,13 @@ function SimilarJobs({ result }: { result: PipelineResult }) {
           {(record.outcomeStat || record.clientQuote) && (
             <div className="mt-auto pt-3">
               {record.outcomeStat && (
-                <p className="font-mono text-xs text-sage">
+                <p className="font-mono text-xs tabular-nums text-sage">
                   {record.outcomeStat}
                   {record.outcomeLabel ? ` ${record.outcomeLabel}` : ""}
                 </p>
               )}
               {record.clientQuote && (
-                <p className="mt-1.5 border-l-2 border-line pl-3 text-[13px] italic leading-relaxed text-ink-3">
+                <p className="mt-1.5 border-l-2 border-line pl-3 text-[13px] italic leading-relaxed text-ink-2">
                   “{record.clientQuote}”
                 </p>
               )}
@@ -335,7 +335,7 @@ function StillRequired({ result }: { result: PipelineResult }) {
   if (result.missing.length === 0) {
     return (
       <p className="rounded-xl border border-dashed border-line bg-card p-5 text-[15px] text-ink-3">
-        Nothing — brief is complete.
+        Nothing. The brief is complete.
       </p>
     );
   }
@@ -360,12 +360,13 @@ function ArtworkReadiness({ triage, onClear }: { triage: ArtworkTriage; onClear:
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
         <VerdictBadge verdict={triage.verdict} />
         <span className="font-mono text-xs text-ink-3">
-          {triage.filename ?? "link"} · {triage.source} · {triage.kind}
+          {triage.filename ?? "link"} ({triage.source} {triage.kind})
         </span>
         <button
           type="button"
           onClick={onClear}
-          className="ml-auto font-mono text-[10px] uppercase tracking-wider text-ink-3 underline-offset-2 hover:text-ink hover:underline"
+          aria-label="Remove artwork"
+          className="hit ml-auto font-mono text-[10px] uppercase tracking-wider text-ink-3 underline-offset-2 transition-colors duration-150 ease-out hover:text-ink hover:underline"
         >
           Remove
         </button>
@@ -389,7 +390,7 @@ function ArtworkReadiness({ triage, onClear }: { triage: ArtworkTriage; onClear:
               <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
                 {check.item}
               </span>
-              {" — "}
+              {": "}
               {check.detail}
             </span>
           </li>
@@ -399,12 +400,12 @@ function ArtworkReadiness({ triage, onClear }: { triage: ArtworkTriage; onClear:
       <blockquote className="mt-4 border-l-2 border-line pl-3.5 text-[13px] italic leading-relaxed text-ink-3">
         “{triage.rulesQuote}”
         <footer className="mt-1.5 font-mono text-[10px] not-italic uppercase tracking-[0.12em]">
-          —{" "}
+          From{" "}
           <a
             href={triage.rulesSourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="underline underline-offset-2 hover:text-ink"
+            className="underline underline-offset-2 transition-colors duration-150 ease-out hover:text-ink"
           >
             roopac.com FAQ
           </a>
@@ -427,8 +428,8 @@ function ReplyPanel({ reply }: { reply: ReplyState }) {
 
   if (!reply.draft) {
     return (
-      <p className="rounded-xl border border-dashed border-line bg-card p-5 text-sm leading-relaxed text-ink-3">
-        WhatsApp draft unavailable{reply.error ? ` — ${reply.error}` : ""}. The job brief above is
+      <p className="rounded-xl border border-dashed border-line bg-card p-5 text-sm leading-relaxed text-ink-2">
+        WhatsApp draft unavailable{reply.error ? `: ${reply.error}` : ""}. The job brief above is
         complete and ready to work from.
       </p>
     );
@@ -442,10 +443,10 @@ function ReplyPanel({ reply }: { reply: ReplyState }) {
             WhatsApp reply
           </span>
           <span className="rounded-full border border-accent/40 px-2 py-px font-mono text-[9px] uppercase tracking-[0.12em] text-accent">
-            draft — review before sending
+            draft: review before sending
           </span>
         </div>
-        <CopyButton text={reply.draft} toastText="Draft copied" />
+        <CopyButton text={reply.draft} label="Copy draft" toastText="Draft copied" />
       </div>
       <div className="mt-3 whitespace-pre-wrap border-t border-sage/25 pt-3 text-[15px] leading-relaxed">
         {reply.draft}

@@ -86,7 +86,7 @@ const CITY_REGIONS: Readonly<Record<string, string>> = {
 };
 
 /** Region for a city name, or null if it is outside the tiny map. */
-export function regionOfCity(city: string): string | null {
+function regionOfCity(city: string): string | null {
   return CITY_REGIONS[city.trim().toLowerCase()] ?? null;
 }
 
@@ -295,19 +295,16 @@ function scoreProduct(extract: EnquiryExtract, product: Product): Recommendation
 
   // Colour capability.
   if (extract.colours !== null && product.maxColors !== null) {
+    const method = product.printMethod ? ` (${product.printMethod})` : "";
     if (extract.colours <= product.maxColors) {
       score += WEIGHTS.colours;
-      const method = product.printMethod ? ` (${product.printMethod})` : "";
       evidence.push({
         kind: "colours",
-        fact: `colours ${extract.colours} ≤ maxColors ${product.maxColors}${product.printMethod ? ` (${product.printMethod})` : ""}`,
+        fact: `colours ${extract.colours} ≤ maxColors ${product.maxColors}${method}`,
         label: `✓ prints up to ${product.maxColors} colours${method} — your ${extract.colours} fit`,
       });
     } else {
-      const method = product.printMethod ? ` (${product.printMethod})` : "";
-      flags.push(
-        `you asked ${extract.colours} colours — this prints up to ${product.maxColors}${method}`,
-      );
+      flags.push(`you asked ${extract.colours} colours — this prints up to ${product.maxColors}${method}`);
     }
   }
 

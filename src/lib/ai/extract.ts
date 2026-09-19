@@ -54,8 +54,7 @@ export async function extractRequirements(
       return { ...parsed, language: correctLanguage(message, parsed.language) };
     } catch (err) {
       if (err instanceof MissingApiKeyError) throw new ExtractionError("missing_key", err.message);
-      lastError = err;
-      if (attempt === 0) continue; // exactly one retry for malformed/failed responses
+      lastError = err; // exactly one retry for malformed/failed responses
     }
   }
   if (NoObjectGeneratedError.isInstance(lastError))

@@ -69,8 +69,7 @@ export async function draftReply(
         : "",
     ].join("\n");
 
-  const names = (text: string) => catalogNames.filter((n) => text.includes(n));
-  const violations = (text: string) => names(text).filter((n) => !allowed.includes(n));
+  const violations = (text: string) => catalogNames.filter((n) => text.includes(n) && !allowed.includes(n));
 
   let lastText = "";
   for (let attempt = 0; attempt < 2; attempt++) {

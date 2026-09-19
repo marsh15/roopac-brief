@@ -112,7 +112,7 @@ const DEFAULT_RULES = [
   { id: "deadline", label: "Confirmed required-by date" },
 ];
 
-/** family slug → required fields. "any" applies when no family matched. */
+/** Extract fields computeMissing reads. Deliberately narrower than EnquiryExtract. */
 export interface ExtractForMissing {
   families: string[];
   quantity: number | null;

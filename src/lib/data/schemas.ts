@@ -135,5 +135,3 @@ export const INDUSTRIES = [
   "Stationery",
   "Women's Tailoring",
 ] as const;
-
-export type EnquiryLanguage = "english" | "tamil" | "tanglish" | "mixed";

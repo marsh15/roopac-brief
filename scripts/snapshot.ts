@@ -385,15 +385,16 @@ async function main() {
 
   for (const s of ["/", "/shipping", "/faq"]) {
     const html = await fetchCached(s);
+    const segments = extractSegments(html);
     productPages.push({
       url: `${BASE}${s}`,
       kind: "static" as const,
       title: s === "/" ? "Home" : s.slice(1),
-      segments: extractSegments(html),
+      segments,
       productSlug: null,
       snapshotDate: SNAPSHOT_DATE,
     });
-    console.log(`  static ${s}: ${extractSegments(html).length} segments`);
+    console.log(`  static ${s}: ${segments.length} segments`);
   }
 
   const portfolioHtml = await fetchCached("/portfolio");

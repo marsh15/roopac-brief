@@ -1,18 +1,11 @@
 /**
- * Tiny lead-time parser for the timeline reality check. "3 weeks" → 21 days.
- * (audit/durations.ts is the fuller normalizer for the auditor; this one is
- * deliberately minimal for the brief's lead-window check.)
+ * Lead time → calendar days for the brief's timeline reality check. Reuses the
+ * auditor's duration parser ("3 weeks" → 21, "14 working days" → ceil 7/5 = 20);
+ * the far end of a range is the conservative wait.
  */
+import { parseDuration, toCalendarDays } from "../audit/durations";
+
 export function parseLeadTimeDays(leadTime: string | null | undefined): number | null {
-  if (!leadTime) return null;
-  const m = leadTime
-    .toLowerCase()
-    .replace(/about|within|~|approximately|approx\.?/g, "")
-    .trim()
-    .match(/(\d+)\s*(day|week|working day|business day)s?/);
-  if (!m) return null;
-  const n = Number(m[1]);
-  if (m[2].startsWith("week")) return n * 7;
-  if (m[2].startsWith("working") || m[2].startsWith("business")) return Math.ceil((n * 7) / 5);
-  return n;
+  const d = leadTime ? parseDuration(leadTime) : null;
+  return d ? toCalendarDays(d).maxDays : null;
 }

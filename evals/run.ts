@@ -124,18 +124,14 @@ async function main() {
     // beyond detection — the checklist over-asking is visible in results.json per case
     hallucinatedProducts: flat.filter((a) => a.name === "recommendations all in catalogue" && !a.pass).length,
     moqDetectionRate: (() => {
-      const checks = results.flatMap((r) => r.assertions).filter((a) => a.name.startsWith("MOQ flag "));
+      const checks = flat.filter((a) => a.name.startsWith("MOQ flag "));
       return checks.length ? +(checks.filter((a) => a.pass).length / checks.length).toFixed(4) : null;
     })(),
     similarJobRelevance: (() => {
-      const checks = (results as { assertions: { name: string; pass: boolean }[] }[])
-        .flatMap((r) => r.assertions)
-        .filter((a) => a.name.startsWith("similarJobs include "));
+      const checks = flat.filter((a) => a.name.startsWith("similarJobs include "));
       return checks.length ? +(checks.filter((a) => a.pass).length / checks.length).toFixed(4) : null;
     })(),
-    failedCases: (results as { ok: boolean; assertions: { pass: boolean }[] }[]).filter(
-      (r) => !r.ok || r.assertions.some((a) => !a.pass),
-    ).length,
+    failedCases: results.filter((r) => !r.ok || r.assertions.some((a: any) => !a.pass)).length,
   };
 
   await mkdir(path.join(ROOT, "evals"), { recursive: true });

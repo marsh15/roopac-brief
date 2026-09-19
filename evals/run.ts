@@ -19,6 +19,21 @@ import { getProducts } from "../src/lib/data/loaders";
 
 const ROOT = path.join(import.meta.dirname, "..");
 
+// tsx scripts don't get Next.js's automatic .env loading — do it explicitly.
+try {
+  process.loadEnvFile(path.join(ROOT, ".env"));
+} catch {
+  /* no .env file — rely on the real environment */
+}
+
+if (!process.env.OPENAI_API_KEY) {
+  console.error(
+    "OPENAI_API_KEY is not set. Evals run the live pipeline.\n" +
+      "Copy .env.example to .env and add your key, then re-run: npm run eval",
+  );
+  process.exit(1);
+}
+
 function deepEqual(a: unknown, b: unknown): boolean {
   return JSON.stringify(a) === JSON.stringify(b);
 }

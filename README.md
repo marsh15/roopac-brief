@@ -69,21 +69,27 @@ minimum), and similar-job relevance (expected industry in the top 5).
 | Metric | Result |
 |---|---|
 | Cases | 27 (English / Tamil / Tanglish / mixed + edge cases) |
-| Hallucinated products | asserted 0 every run |
-| Extraction accuracy, missing-field detection, MOQ detection, similar-job relevance | fill from `evals/results.json` after your first `npm run eval` |
+| Extraction accuracy | **99.0%** (96/97 asserted fields) |
+| Missing-field detection | **100%** |
+| Hallucinated products | **0** (asserted every run) |
+| MOQ-violation detection | **100%** |
+| Similar-job relevance | **100%** |
 
 The first three cases are byte-identical to the three UI samples, so the demo can never silently diverge from
 the evals.
 
 ## Known failure modes
 
-Observed while building; both are extraction (the only model-touched stage that reads customer intent), both
-are caught by the eval suite, and neither can produce a wrong product fact (matching is deterministic):
+Observed during tuning; all are extraction (the only model-touched stage that reads customer intent), all are
+caught by the eval suite, and none can produce a wrong product fact (matching is deterministic):
 
-1. **Tanglish written-out quantities.** Quantity words in Latin script are the noisiest extraction field.
-   Mitigation: quantities below a family's MOQ always surface as a flag, so a misheard quantity is visible,
-   never silent. Accepted limitation: correction needs a follow-up message.
-2. **"Premium" over-mapping.** A premium positioning mention can occasionally attach to an adjacent family
+1. **Tanglish and script-mixing.** `language` is the noisiest field: pure Tanglish is occasionally labelled
+   "tamil", and heavily mixed Tamil-script + Latin messages read as "tanglish" instead of "mixed" (the one
+   failing case in the recorded baseline). Mitigation: language only affects the reply draft's register, never
+   product facts. Accepted limitation.
+2. **Written-out quantities.** Quantity words are sometimes noisy. Mitigation: quantities below a family's
+   MOQ always surface as a flag, so a misheard quantity is visible, never silent.
+3. **"Premium" over-mapping.** A premium positioning mention can occasionally attach to an adjacent family
    the customer didn't name. Mitigation: the matcher's weight table makes family match dominate positioning
    (100 vs 10), so positioning alone can't put an unasked family in the top 3; the eval suite asserts this
    directly.

@@ -4,6 +4,20 @@ import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const { metrics } = JSON.parse(await readFile(path.join(ROOT, "evals", "results.json"), "utf8"));
+
+// Never record a baseline off a broken run — a garbage baseline makes
+// eval:assert pass trivially forever. Cases with failing ASSERTIONS are fine
+// (that's what baselines encode: known failure modes); crashed cases are not.
+const results = JSON.parse(await readFile(path.join(ROOT, "evals", "results.json"), "utf8"));
+const crashed = results.results.filter((r: any) => r.ok === false).length;
+if (crashed > 0 || metrics.extractionFieldsChecked === 0) {
+  console.error(
+    `Refusing to record: ${crashed} case(s) crashed (pipeline errors, not assertion failures) ` +
+      `and ${metrics.extractionFieldsChecked} extraction fields were checked. Fix the run first (npm run eval).`,
+  );
+  process.exit(1);
+}
+
 const baseline = {
   extractionAccuracy: metrics.extractionAccuracy,
   missingDetectionRate: metrics.missingDetectionRate,

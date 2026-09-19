@@ -138,6 +138,8 @@ export function computeMissing(extract: ExtractForMissing): MissingItem[] {
       if (!rules.has(rule.id)) rules.set(rule.id, rule);
     }
   }
+  // quantity is universally required — family rule sets assume it
+  if (!rules.has("quantity")) rules.set("quantity", { id: "quantity", label: "How many pieces?" });
 
   const satisfied = new Set<string>();
   if (extract.quantity !== null) satisfied.add("quantity");

@@ -11,11 +11,17 @@ export const artworkKinds = ["file", "canva_link", "drive_link", "physical_sampl
 
 export function makeEnquiryExtractSchema(familySlugs: readonly string[]) {
   return z.object({
-    language: z.enum(["english", "tamil", "tanglish", "mixed"]).describe("Language of the message."),
+    language: z
+      .enum(["english", "tamil", "tanglish", "mixed"])
+      .describe(
+        "Language of the message. Tamil words written in LATIN script ('venum', 'iruku', 'enaku', 'ku') with NO Tamil-script characters = tanglish (even if it feels like Tamil). Tamil-script characters (தமிழ்) with no other language = tamil. Tamil script mixed with English/Latin words = mixed. Plain English = english.",
+      ),
     industry: z
       .enum(INDUSTRIES)
       .nullable()
-      .describe("Customer's business type, normalized to Roopac's industry names. null if not stated."),
+      .describe(
+        "Customer's business type, normalized to Roopac's industry names. Glosses: bakery/cafe/restaurant/food brand/sweets = 'Food (Non-direct / Cafe)'; online-only brand = 'D2C / E-commerce'; saree shop = 'Saree Boutique'; tailoring/churidars/boutique garments = 'Women's Tailoring' or 'Menswear'; phone accessories shop = 'Mobile Shops'; clinic/hospital = 'Healthcare'. null if nothing fits, keeping their wording in industryRaw.",
+      ),
     industryRaw: z.string().nullable().describe("Verbatim industry/business wording if it didn't map cleanly."),
     city: z.string().nullable().describe("City the customer is in. null if not stated."),
     quantity: z
@@ -27,7 +33,9 @@ export function makeEnquiryExtractSchema(familySlugs: readonly string[]) {
     families: z
       .array(z.enum(familySlugs as [string, ...string[]]))
       .max(5)
-      .describe("Product families the customer wants, from the enum. Empty array if unclear."),
+      .describe(
+        "Product families the customer wants, from the enum. Glosses: paper-bag = printed paper carry bags; kraft-mailer = brown kraft paper mailers; polymailer = plastic poly/courier mailers; corrugated/monocarton/rigid/saree-box = boxes; sticker = diecut stickers/vinyl labels; fabric-label = woven/cotton/size clothing labels; paper-tag = swing/paper tags; businesscard = business cards; stationery = tissue wrapping paper, thank-you cards, letterheads; cotton-bag = cloth/cotton bags; protective-bag = protective packaging; essentials = satin rolls, shredded paper, gift wrap, sleeves. Empty array if unclear.",
+      ),
     familiesRaw: z
       .array(z.string())
       .describe("Verbatim product wording from the message ('paper bags', 'cover maathi')."),

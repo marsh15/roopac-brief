@@ -1,0 +1,1612 @@
+{
+  "metrics": {
+    "runAt": "2026-09-19T16:09:59.360Z",
+    "cases": 27,
+    "extractionAccuracy": 0.9897,
+    "extractionFieldsChecked": 97,
+    "missingDetectionRate": 1,
+    "hallucinatedProducts": 0,
+    "moqDetectionRate": 1,
+    "similarJobRelevance": 1,
+    "failedCases": 1
+  },
+  "results": [
+    {
+      "id": "fixture-english",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "extract.colours",
+          "pass": true
+        },
+        {
+          "name": "extract.deadline is null",
+          "pass": true
+        },
+        {
+          "name": "missing.size",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Saree Boutique",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": "saree boutique",
+        "city": "Coimbatore",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "carry bags"
+        ],
+        "sizes": [],
+        "usage": "saree packing",
+        "positioning": "premium",
+        "colours": 2,
+        "deadline": null,
+        "deadlineText": "next month",
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "logo iruku"
+        },
+        "notes": "Can you share options? Also what details do you need from me?"
+      },
+      "topSlugs": [
+        "classic-on-redbull",
+        "sprout-on-redbull",
+        "vogue-on-redbull"
+      ]
+    },
+    {
+      "id": "fixture-tamil",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "missing.size",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tamil",
+        "industry": "Saree Boutique",
+        "industryRaw": "சேலை கடை",
+        "city": "கோவை",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "பேப்பர் பேக்"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "லோகோ அட்டாச் செய்துள்ளேன்"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "fixture-tanglish",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "missing.size",
+          "pass": true
+        },
+        {
+          "name": "missing.colours",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Saree Boutique",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tanglish",
+        "industry": "Saree Boutique",
+        "industryRaw": "boutique",
+        "city": "Chennai",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bag"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "logo iruku"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "missing-quantity",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity is null",
+          "pass": true
+        },
+        {
+          "name": "missing.quantity",
+          "pass": true
+        },
+        {
+          "name": "missing.dimensions",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tanglish",
+        "industry": "Food (Non-direct / Cafe)",
+        "industryRaw": "bakery",
+        "city": "Bangalore",
+        "quantity": null,
+        "families": [
+          "rigid"
+        ],
+        "familiesRaw": [
+          "rigid box"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "collapsible-magnetic-rigid-box",
+        "lid-and-bottom-rigid-box",
+        "shoulder-and-neck-rigid-box"
+      ]
+    },
+    {
+      "id": "below-moq-paper-bag",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.colours",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "MOQ flag 300 on top",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": "saree shop",
+        "city": null,
+        "quantity": 150,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "classic paper bags"
+        ],
+        "sizes": [],
+        "usage": "saree packing",
+        "positioning": null,
+        "colours": 1,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-redbull",
+        "sprout-on-butterfly"
+      ]
+    },
+    {
+      "id": "below-moq-woven-labels",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "MOQ flag 1000 on top",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Miscellaneous",
+        "industryRaw": null,
+        "city": "Tirupur",
+        "quantity": 500,
+        "families": [
+          "fabric-label"
+        ],
+        "familiesRaw": [
+          "woven labels"
+        ],
+        "sizes": [],
+        "usage": "for my garments brand",
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "logo iruku"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "cotton-labels",
+        "size-labels",
+        "woven-labels"
+      ]
+    },
+    {
+      "id": "unknown-product",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "noMatch",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Food (Non-direct / Cafe)",
+        "industryRaw": null,
+        "city": null,
+        "quantity": 200,
+        "families": [],
+        "familiesRaw": [],
+        "sizes": [],
+        "usage": "custom coffee mugs",
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": []
+    },
+    {
+      "id": "two-products",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "D2C / E-commerce",
+        "industryRaw": "textile shop",
+        "city": "Coimbatore",
+        "quantity": 500,
+        "families": [
+          "paper-bag",
+          "kraft-mailer"
+        ],
+        "familiesRaw": [
+          "paper bags",
+          "kraft mailers"
+        ],
+        "sizes": [],
+        "usage": "online orders",
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "vague-dimensions",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning is null",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": null,
+        "industryRaw": null,
+        "city": null,
+        "quantity": 200,
+        "families": [
+          "monocarton"
+        ],
+        "familiesRaw": [
+          "box"
+        ],
+        "sizes": [
+          "medium"
+        ],
+        "usage": "shipping my products",
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "gable-monocarton-box",
+        "hexagon-monocarton-box",
+        "lid-and-bottom-monocarton-box"
+      ]
+    },
+    {
+      "id": "bad-artwork-link",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": "boutique",
+        "city": "Madurai",
+        "quantity": 300,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [
+            "file"
+          ],
+          "note": "logo is at droppbox.com/logo-final.png"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "ambiguous-deadline",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.deadline is null",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tanglish",
+        "industry": "Saree Boutique",
+        "industryRaw": null,
+        "city": "Erode",
+        "quantity": 300,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "vogue bag"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": "next month",
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "irrelevant-enquiry",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity is null",
+          "pass": true
+        },
+        {
+          "name": "extract.industry is null",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "noMatch",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": null,
+        "industryRaw": null,
+        "city": null,
+        "quantity": null,
+        "families": [],
+        "familiesRaw": [],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": "Customer inquiring about return policy for defects."
+      },
+      "topSlugs": []
+    },
+    {
+      "id": "budget-only",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": null,
+        "industryRaw": "carry bags",
+        "city": null,
+        "quantity": 1000,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "carry bag"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": "economy",
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-firefly",
+        "sprout-on-firefly",
+        "vogue-on-firefly"
+      ]
+    },
+    {
+      "id": "menswear-city",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Menswear",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Menswear",
+        "industryRaw": "menswear store",
+        "city": "Madurai",
+        "quantity": 300,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "vogue bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": "premium",
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [
+            "file"
+          ],
+          "note": "logo file in PDF"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-redbull",
+        "sprout-on-redbull",
+        "vogue-on-redbull"
+      ]
+    },
+    {
+      "id": "cafe-two-products",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "missing.size",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Food (Non-direct / Cafe)",
+        "industryRaw": "Cafe",
+        "city": "Pondicherry",
+        "quantity": 300,
+        "families": [
+          "kraft-mailer",
+          "sticker"
+        ],
+        "familiesRaw": [
+          "kraft mailers",
+          "stickers"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "kraft-mailer",
+        "kraft-mailer-signature",
+        "custom-diecut-sticker"
+      ]
+    },
+    {
+      "id": "healthcare-clinic",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Healthcare",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Healthcare",
+        "industryRaw": "dental clinic",
+        "city": "Chennai",
+        "quantity": 200,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "logo"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "mobile-shop",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": true
+        },
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tanglish",
+        "industry": "Mobile Shops",
+        "industryRaw": null,
+        "city": "Coimbatore",
+        "quantity": 1000,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "carry bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "d2c-polymailer",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include D2C / E-commerce",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "D2C / E-commerce",
+        "industryRaw": "D2C skincare brand",
+        "city": null,
+        "quantity": 500,
+        "families": [
+          "polymailer"
+        ],
+        "familiesRaw": [
+          "poly mailers"
+        ],
+        "sizes": [],
+        "usage": "unboxing",
+        "positioning": "premium",
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": "launching soon"
+      },
+      "topSlugs": [
+        "black-poly-mailer",
+        "green-poly-mailer",
+        "pink-poly-mailer"
+      ]
+    },
+    {
+      "id": "saree-box-dimensions",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.deadline is null",
+          "pass": true
+        },
+        {
+          "name": "missing.dimensions",
+          "pass": true
+        },
+        {
+          "name": "missing.deadline",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": null,
+        "city": null,
+        "quantity": 100,
+        "families": [
+          "saree-box"
+        ],
+        "familiesRaw": [
+          "saree boxes"
+        ],
+        "sizes": [],
+        "usage": "wedding gifting",
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": "urgent — before Deepavali",
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "saree-box",
+        "saree-box-signature",
+        "active-sac"
+      ]
+    },
+    {
+      "id": "concrete-date",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "missing.size",
+          "pass": true
+        },
+        {
+          "name": "missing.colours",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Miscellaneous",
+        "industryRaw": "textile shop",
+        "city": "Erode",
+        "quantity": 300,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": "2023-10-15",
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "no-deadline-browsing",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.deadline is null",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Miscellaneous",
+        "industryRaw": null,
+        "city": null,
+        "quantity": 300,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": "nothing urgent",
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "kids-brand-file",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Kids",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Kids",
+        "industryRaw": "Kids clothing brand",
+        "city": "Tirupur",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "vogue bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [
+            "file"
+          ],
+          "note": "logo attached as PDF"
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "mixed-language",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.language",
+          "pass": false,
+          "detail": "expected \"mixed\", got \"tanglish\""
+        },
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "tanglish",
+        "industry": "Saree Boutique",
+        "industryRaw": null,
+        "city": "Madurai",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": true,
+          "kinds": [],
+          "note": "Logo இருக்கு."
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    },
+    {
+      "id": "supermarket-volume",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 family=paper-bag",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Miscellaneous",
+        "industryRaw": "supermarket chain",
+        "city": "Chennai",
+        "quantity": 50000,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": "economy",
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-firefly",
+        "sprout-on-firefly",
+        "vogue-on-firefly"
+      ]
+    },
+    {
+      "id": "tissue-paper",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.colours",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "similarJobs include Saree Boutique",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": "saree boutique",
+        "city": "Mysore",
+        "quantity": 500,
+        "families": [
+          "stationery"
+        ],
+        "familiesRaw": [
+          "tissue wrapping sheets"
+        ],
+        "sizes": [],
+        "usage": "saree packing",
+        "positioning": null,
+        "colours": 1,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "tissue-paper",
+        "thanks-card",
+        "business-envelope"
+      ]
+    },
+    {
+      "id": "business-cards",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.positioning",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Cosmetics & Accessories",
+        "industryRaw": "beauty studio",
+        "city": "Coimbatore",
+        "quantity": 100,
+        "families": [
+          "businesscard"
+        ],
+        "familiesRaw": [
+          "business cards"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": "premium",
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "business-card-signature",
+        "business-card-everyday",
+        "saree-box"
+      ]
+    },
+    {
+      "id": "written-words-quantity",
+      "ok": true,
+      "assertions": [
+        {
+          "name": "extract.quantity",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
+          "pass": true
+        },
+        {
+          "name": "extract.families",
+          "pass": true
+        },
+        {
+          "name": "recommendations all in catalogue",
+          "pass": true
+        }
+      ],
+      "extract": {
+        "language": "english",
+        "industry": "Saree Boutique",
+        "industryRaw": "saree store",
+        "city": "Salem",
+        "quantity": 500,
+        "families": [
+          "paper-bag"
+        ],
+        "familiesRaw": [
+          "paper bags"
+        ],
+        "sizes": [],
+        "usage": null,
+        "positioning": null,
+        "colours": null,
+        "deadline": null,
+        "deadlineText": null,
+        "artwork": {
+          "mentioned": false,
+          "kinds": [],
+          "note": null
+        },
+        "notes": null
+      },
+      "topSlugs": [
+        "classic-on-butterfly",
+        "classic-on-firefly",
+        "classic-on-redbull"
+      ]
+    }
+  ]
+}

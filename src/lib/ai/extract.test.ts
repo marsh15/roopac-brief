@@ -76,7 +76,13 @@ describe("extractRequirements", () => {
 
   it("throws ExtractionError(no_object) after two malformed responses", async () => {
     const { NoObjectGeneratedError } = await import("ai");
-    const err = new NoObjectGeneratedError({ message: "No object generated", text: "", reason: "parse-error" });
+    const err = new NoObjectGeneratedError({
+      message: "No object generated",
+      text: "",
+      response: undefined as any,
+      usage: undefined as any,
+      finishReason: "error" as any,
+    });
     const generate = vi.fn().mockRejectedValue(err);
     await expect(extractRequirements("hello", { generate: generate as any })).rejects.toMatchObject({
       code: "no_object",

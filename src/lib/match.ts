@@ -344,7 +344,11 @@ export function matchProducts(
     };
   }
 
-  const recommendations = products.map((product) => scoreProduct(extract, product)).sort(
+  // Explicit family intent is exclusive: an enquiry for business cards must
+  // never surface saree boxes to fill the ranking, no matter how they score.
+  const candidates = asked.size ? products.filter((p) => asked.has(p.family)) : products;
+
+  const recommendations = candidates.map((product) => scoreProduct(extract, product)).sort(
     (a, b) => b.score - a.score || a.product.slug.localeCompare(b.product.slug),
   );
   return { recommendations, noMatch: null };

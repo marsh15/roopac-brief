@@ -28,7 +28,7 @@ Tone: calm, concrete. Show, don't pitch. Every claim on screen is backed by a li
 
 **[0:55-1:10] Catalogue Health: proof of inspection**
 
-> "While snapshotting the catalogue, the auditor found contradictions live on roopac.com. The spec table says Offset while the process copy on the same page says Flexo. And there are four different delivery promises: 21 days production, 14 working days total, about 3 weeks total, and production 1-2 weeks plus 5-7 days shipping. They can't all be true."
+> "While snapshotting the catalogue, the auditor flagged possible contradictions live on roopac.com. The spec table says Offset while the process copy on the same page says Flexo. And there are four different delivery promises: 21 days production, 14 working days total, about 3 weeks total, and production 1-2 weeks plus 5-7 days shipping. They can't all hold at once, so the auditor surfaces them for your team to review."
 
 *(Open /health, scroll the SLA finding with its quotes and URLs.)*
 

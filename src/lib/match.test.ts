@@ -73,7 +73,8 @@ describe("matchProducts", () => {
 
   it("gives every recommendation evidence citing real MOQ/size/GSM fields", () => {
     const { recommendations } = matchProducts(sareeEnquiry, products);
-    expect(recommendations.length).toBe(products.length);
+    // Exclusive filtering: only the asked family (12 paper-bag SKUs) comes back.
+    expect(recommendations.length).toBe(products.filter((p) => p.family === "paper-bag").length);
     for (const rec of recommendations) {
       expect(rec.evidence.length).toBeGreaterThanOrEqual(1);
       expect(rec.evidence.some((e) => /MOQ|GSM|×/.test(e.label))).toBe(true);
@@ -148,5 +149,29 @@ describe("similarJobs", () => {
     const chennaiJob = jobs.find((j) => j.record.city === "Chennai")!;
     expect(chennaiJob.reasons).toContain("same city: Chennai");
     expect(chennaiJob.reasons.some((r) => r.startsWith("same region"))).toBe(false);
+  });
+});
+
+describe("matchProducts: family intent is exclusive", () => {
+  // The public eval page once showed saree-box under a business-cards enquiry
+  // because unrelated families filled the ranking when the asked family had
+  // fewer than three SKUs.
+  const cardEnquiry: EnquiryExtract = { ...emptyExtract, families: ["businesscard"], quantity: 100 };
+
+  it("returns only asked-family products", () => {
+    const { recommendations, noMatch } = matchProducts(cardEnquiry, products);
+    expect(noMatch).toBeNull();
+    expect(recommendations.length).toBeGreaterThan(0);
+    for (const rec of recommendations) {
+      expect(rec.product.family).toBe("businesscard");
+    }
+  });
+
+  it("returns both business-card SKUs even though that is fewer than three", () => {
+    const { recommendations } = matchProducts(cardEnquiry, products);
+    expect(recommendations.map((r) => r.product.slug).sort()).toEqual([
+      "business-card-everyday",
+      "business-card-signature",
+    ]);
   });
 });

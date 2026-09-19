@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { draftReply } from "@/lib/pipeline/reply";
 import { getProducts } from "@/lib/data/loaders";
 import type { PipelineResult } from "@/lib/pipeline/run";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -12,6 +13,19 @@ export const maxDuration = 60;
  * human review before sending.
  */
 export async function POST(req: Request) {
+  const limit = rateLimit(clientIp(req));
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "rate_limited",
+          message: `Too many drafts from this address. Try again in about ${Math.ceil(limit.retryAfterSec / 60)} minutes.`,
+        },
+      },
+      { status: 429, headers: { "retry-after": String(limit.retryAfterSec) } },
+    );
+  }
+
   let body: { pipeline?: PipelineResult };
   try {
     body = await req.json();

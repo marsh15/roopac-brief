@@ -74,6 +74,21 @@ async function main() {
       const allReal = r.recommendations.every((rec) => catalogUrls.has((rec.product as any).url));
       assertions.push({ name: "recommendations all in catalogue", pass: allReal, detail: allReal ? undefined : "hallucinated product!" });
 
+      // family intent is exclusive: stated families keep unrelated families
+      // out of the visible recommendation set entirely
+      const askedFamilies: string[] = (c.expect as any)?.families ?? [];
+      if (askedFamilies.length) {
+        const foreign = r.recommendations
+          .slice(0, 3)
+          .filter((rec) => !askedFamilies.includes((rec.product as any).family))
+          .map((rec) => (rec.product as any).slug);
+        assertions.push({
+          name: "top3 stays inside asked families",
+          pass: foreign.length === 0,
+          detail: foreign.length ? `foreign: ${foreign.join(",")}` : undefined,
+        });
+      }
+
       if (c.expectFamilyInTop3) {
         const top3 = r.recommendations.slice(0, 3);
         const pass = top3.some((rec) => (rec.product as any).family === c.expectFamilyInTop3);

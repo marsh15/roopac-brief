@@ -1,6 +1,6 @@
 {
   "metrics": {
-    "runAt": "2026-09-19T16:25:42.090Z",
+    "runAt": "2026-09-19T17:21:36.348Z",
     "cases": 27,
     "extractionAccuracy": 1,
     "extractionFieldsChecked": 98,
@@ -60,6 +60,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "top3 family=paper-bag",
           "pass": true
         },
@@ -89,7 +93,7 @@
         "artwork": {
           "mentioned": true,
           "kinds": [],
-          "note": "logo iruku"
+          "note": "logo"
         },
         "notes": "Can you share options? Also what details do you need from me?"
       },
@@ -136,6 +140,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "top3 family=paper-bag",
           "pass": true
         }
@@ -163,7 +171,7 @@
           "kinds": [],
           "note": "லோகோ அட்டச் பண்ணிட்டேன்"
         },
-        "notes": "விலை என்ன?"
+        "notes": null
       },
       "topSlugs": [
         "classic-on-butterfly",
@@ -208,6 +216,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "top3 family=paper-bag",
           "pass": true
         },
@@ -237,7 +249,7 @@
         "artwork": {
           "mentioned": true,
           "kinds": [],
-          "note": "logo iruku"
+          "note": null
         },
         "notes": null
       },
@@ -281,6 +293,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         }
       ],
@@ -333,6 +349,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -389,6 +409,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -485,6 +509,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -594,6 +622,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -617,7 +649,7 @@
         "artwork": {
           "mentioned": true,
           "kinds": [
-            "drive_link"
+            "file"
           ],
           "note": "logo is at droppbox.com/logo-final.png"
         },
@@ -659,6 +691,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         }
       ],
@@ -756,6 +792,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -815,6 +855,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -882,6 +926,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -939,6 +987,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -1062,6 +1114,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "similarJobs include D2C / E-commerce",
           "pass": true
         }
@@ -1124,6 +1180,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -1153,8 +1213,7 @@
       },
       "topSlugs": [
         "saree-box",
-        "saree-box-signature",
-        "active-sac"
+        "saree-box-signature"
       ]
     },
     {
@@ -1183,6 +1242,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         }
       ],
@@ -1235,6 +1298,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         }
       ],
@@ -1294,6 +1361,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "similarJobs include Kids",
           "pass": true
         }
@@ -1350,6 +1421,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -1405,6 +1480,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         },
         {
@@ -1468,6 +1547,10 @@
           "pass": true
         },
         {
+          "name": "top3 stays inside asked families",
+          "pass": true
+        },
+        {
           "name": "similarJobs include Saree Boutique",
           "pass": true
         }
@@ -1526,6 +1609,10 @@
         {
           "name": "recommendations all in catalogue",
           "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
+          "pass": true
         }
       ],
       "extract": {
@@ -1555,8 +1642,7 @@
       },
       "topSlugs": [
         "business-card-signature",
-        "business-card-everyday",
-        "saree-box"
+        "business-card-everyday"
       ]
     },
     {
@@ -1577,6 +1663,10 @@
         },
         {
           "name": "recommendations all in catalogue",
+          "pass": true
+        },
+        {
+          "name": "top3 stays inside asked families",
           "pass": true
         }
       ],

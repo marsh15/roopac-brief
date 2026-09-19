@@ -9,9 +9,10 @@ into a grounded internal job brief. Product recommendations cite real catalogue 
 similar jobs come from your 427-record portfolio, the checklist asks for only what's genuinely missing, artwork
 gets triaged, and the WhatsApp reply is a draft marked for human approval.
 
-Two extras from inspecting your site: a Catalogue Health audit (your spec tables and process copy disagree on
-print method, and four delivery promises coexist; quotes and URLs on /health) and a 27-case eval suite with
-measured extraction accuracy and a zero-hallucinated-products gate (/evals).
+Two extras from inspecting your site: a Catalogue Health audit (your spec tables and process copy appear to
+disagree on print method, and four delivery promises coexist; I flag them as review candidates with quotes and
+URLs on /health, since you'd know the ground truth) and a 27-case eval suite with measured extraction accuracy
+and a zero-hallucinated-products gate (/evals).
 
 Live demo: [add Vercel URL after `vercel login` + `vercel --prod`] · Code: https://github.com/marsh15/roopac-brief
 

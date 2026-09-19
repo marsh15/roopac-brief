@@ -6,8 +6,8 @@
 
 **One messy WhatsApp enquiry in (English / Tamil / Tanglish) → one grounded internal job brief out**: evidence-backed
 product recommendations, similar past work, a missing-information checklist, artwork triage, and a WhatsApp reply
-draft marked for human approval. Plus a Catalogue Health auditor that flags real contradictions in the public
-product information, and an eval suite that measures the whole pipeline.
+draft marked for human approval. Plus a Catalogue Health auditor that flags potential inconsistencies in the
+public product information as review candidates, and an eval suite that measures the whole pipeline.
 
 ## Why this exists
 
@@ -15,7 +15,7 @@ Enquiries at a custom-printing shop arrive as one-line WhatsApp messages: *"Anna
 boutique ku, logo iruku"*. Turning that into a production-ready brief means: figure out what they want, check
 it against the catalogue, recall similar jobs, ask only for what's genuinely missing, and reply in the
 customer's own language, without quoting a price (Roopac's pricing is a client-side configurator, so this tool
-validates MOQs and never invents numbers). Sales currently does all of that by hand. This prototype automates it.
+validates MOQs and never invents numbers). This prototype automates that handoff.
 
 ## How it works
 
@@ -51,8 +51,10 @@ each recommendation shows the evidence checklist behind it.
 | Route | What it is |
 |---|---|
 | `/` | Brief builder: samples, artwork triage, evidence cards, checklist, brief, WhatsApp draft |
-| `/health` | Catalogue Health: contradictions found in the public catalogue, with verbatim quotes + URLs |
+| `/health` | Catalogue Health: potential inconsistencies in the public catalogue, quoted verbatim with URLs, framed as review candidates |
 | `/evals` | Eval run results: per-case assertions and headline metrics |
+
+The demo endpoints are rate-limited per IP (20 builds/hour) so a shared demo link survives being shared.
 
 ## Eval numbers
 
@@ -62,13 +64,14 @@ Run `npm run eval` (needs `OPENAI_API_KEY`, ~27 small-model calls) → `evals/re
 The suite asserts, per case: field-level extraction accuracy (including no-invention checks on
 must-be-null fields), missing-field detection against the same declarative table the app uses, recommendation
 validity (every recommended product's URL must exist in the committed catalogue; the hallucinated-product rate
-is asserted to be 0, by construction and by check), MOQ-violation detection (below-MOQ cases must flag the exact
+is asserted to be 0, by construction and by check), family exclusivity (stated families keep unrelated
+families out of the recommendation set entirely), MOQ-violation detection (below-MOQ cases must flag the exact
 minimum), and similar-job relevance (expected industry in the top 5).
 
 | Metric | Result |
 |---|---|
 | Cases | 27 (English / Tamil / Tanglish / mixed + edge cases) |
-| Extraction accuracy | **100%** (98/98 asserted fields) |
+| Extraction accuracy | **98/98 asserted fields passed** across the regression suite (a suite result, not a claim of universal accuracy) |
 | Missing-field detection | **100%** |
 | Hallucinated products | **0** (asserted every run) |
 | MOQ-violation detection | **100%** |
@@ -91,9 +94,8 @@ fact (matching is deterministic).
 2. **Written-out quantities.** Quantity words are sometimes noisy. Mitigation: quantities below a family's
    MOQ always surface as a flag, so a misheard quantity is visible.
 3. **"Premium" over-mapping.** A premium positioning mention can occasionally attach to an adjacent family
-   the customer didn't name. Mitigation: the matcher's weight table makes family match dominate positioning
-   (100 vs 10), so positioning alone can't put an unasked family in the top 3; the eval suite asserts this
-   directly.
+   the customer didn't name. Mitigation: explicit family intent is exclusive, so unasked families never enter
+   the recommendation set at all; the eval suite asserts this for every case that names a family.
 
 ## Setup
 

@@ -92,7 +92,8 @@ export default async function HealthPage() {
       <h1 className="mt-2 font-serif text-3xl font-semibold tracking-tight">Catalogue Health</h1>
       <p className="mt-3 max-w-prose text-pretty text-[15px] leading-relaxed text-ink-2">
         Generated from a public snapshot of roopac.com dated {snapshot.snapshotDate}. Every claim below quotes the
-        snapshot verbatim and links to the live page it was captured from.
+        snapshot verbatim and links to the live page it was captured from. These are potential inconsistencies
+        raised for review, not verdicts; Roopac knows its own production reality.
       </p>
 
       {findings.length === 0 ? (

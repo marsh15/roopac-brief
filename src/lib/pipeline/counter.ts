@@ -1,14 +1,17 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 
 /**
  * Job numbers RB-<YYYYMMDD>-<seq> from a JSON counter file — demonstrates
  * state handling without a database. On serverless the counter lives in /tmp
- * and may reset across invocations; job numbers stay unique enough for a
- * prototype session and that trade-off is documented in the README.
+ * (the only writable path there), so sequences work per warm instance; two
+ * instances could still pick the same number, which is acceptable for a
+ * prototype and documented in the README.
  */
 
-const RUNTIME_DIR = process.env.JOB_COUNTER_DIR ?? path.join(process.cwd(), ".runtime");
+const RUNTIME_DIR =
+  process.env.JOB_COUNTER_DIR ?? (process.env.VERCEL ? path.join(os.tmpdir(), "roopac-brief") : path.join(process.cwd(), ".runtime"));
 
 export async function nextJobNumber(now = new Date()): Promise<string> {
   const day = now.toISOString().slice(0, 10).replaceAll("-", "");

@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-09-19T15:51:07.478Z",
+  "findings": [
+    {
+      "type": "print-method",
+      "severity": "high",
+      "title": "Offset (spec) vs Flexo (process copy) — Classic on Butterfly",
+      "sources": [
+        {
+          "url": "https://roopac.com/products/classic-on-butterfly",
+          "quote": "Print Method: Offset"
+        },
+        {
+          "url": "https://roopac.com/products/classic-on-butterfly",
+          "quote": "Flexo print, double-pass inspection. No duds leave the floor."
+        }
+      ],
+      "explanation": "On https://roopac.com/products/classic-on-butterfly the spec table states “Print Method: Offset” while the same page’s process block (step 03, “We print & QC”) says “Flexo print, double-pass inspection. No duds leave the floor.”. Offset and Flexo are materially different production processes — different presses, inks, plates and cost structures — so both statements cannot describe how this product is made."
+    },
+    {
+      "type": "print-method",
+      "severity": "high",
+      "title": "Offset (spec) vs Flexo (process copy) — Vogue on Redbull",
+      "sources": [
+        {
+          "url": "https://roopac.com/products/vogue-on-redbull",
+          "quote": "Print Method: Offset"
+        },
+        {
+          "url": "https://roopac.com/products/vogue-on-redbull",
+          "quote": "Flexo print, double-pass inspection. No duds leave the floor."
+        }
+      ],
+      "explanation": "On https://roopac.com/products/vogue-on-redbull the spec table states “Print Method: Offset” while the same page’s process block (step 03, “We print & QC”) says “Flexo print, double-pass inspection. No duds leave the floor.”. Offset and Flexo are materially different production processes — different presses, inks, plates and cost structures — so both statements cannot describe how this product is made."
+    },
+    {
+      "type": "print-method",
+      "severity": "high",
+      "title": "Screen (spec) vs Flexo (process copy) — Kraft Mailer",
+      "sources": [
+        {
+          "url": "https://roopac.com/products/kraft-mailer",
+          "quote": "Print Method: Screen"
+        },
+        {
+          "url": "https://roopac.com/products/kraft-mailer",
+          "quote": "Flexo print, double-pass inspection. No duds leave the floor."
+        }
+      ],
+      "explanation": "On https://roopac.com/products/kraft-mailer the spec table states “Print Method: Screen” while the same page’s process block (step 03, “We print & QC”) says “Flexo print, double-pass inspection. No duds leave the floor.”. Screen and Flexo are materially different production processes — different presses, inks, plates and cost structures — so both statements cannot describe how this product is made."
+    },
+    {
+      "type": "turnaround",
+      "severity": "high",
+      "title": "Site-wide turnaround conflict: production promised at 7/14/21 days (shipping billed separately) vs total delivery promised at 14/20/21 days",
+      "sources": [
+        {
+          "url": "https://roopac.com/",
+          "quote": "Once approved, your order is printed, quality-checked, and delivered to your doorstep in about 3 weeks."
+        },
+        {
+          "url": "https://roopac.com/shipping",
+          "quote": "Most orders are delivered within 3 weeks of artwork approval — that includes production (1-2 weeks depending on product) and shipping (5-7 business days). Simple products like stickers and business cards ship in about 1 week."
+        },
+        {
+          "url": "https://roopac.com/faq",
+          "quote": "Most products are delivered within 3 weeks of artwork approval — that covers production and shipping to your doorstep. Simpler products like stickers, business cards, and thank-you cards ship in about 1 week. We share a timeline before you pay."
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "3 weeks"
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "21 days production"
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "7 days production"
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "Shipping time is separate and calculated at checkout."
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "14 working days, tracked. We high-five quietly."
+        },
+        {
+          "url": "https://roopac.com/products/gable-monocarton-box",
+          "quote": "2 weeks"
+        },
+        {
+          "url": "https://roopac.com/products/gable-monocarton-box",
+          "quote": "14 days production"
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "Pan-India delivery14 working days."
+        },
+        {
+          "url": "https://roopac.com/products/collapsible-magnetic-rigid-box",
+          "quote": "Four steps. Fourteen days. Zero surprises."
+        }
+      ],
+      "explanation": "Normalised to calendar days (business/working days converted at a 7/5 ratio, rounded up), the same site promises production of 7, 14, 21 days — spec-table Lead Time and the order-turnaround selector — while stating that shipping is separate and calculated at checkout, which puts any realistic door-to-door total above the production window alone. Yet the same product pages promise delivery in 14/20/21 days total (“Pan-India delivery 14 working days.” ≈ 20 calendar days; “Four steps. Fourteen days.” = 14), and the homepage, /shipping and /faq promise delivery within about 3 weeks (21 calendar days) all-in. /shipping itself itemises “within 3 weeks”, “1-2 weeks”, “5-7 business days”, “about 1 week”. These cannot all hold: a 21-day production promise already meets or exceeds every total-delivery promise (smallest: 14 days) before a single shipping day is added."
+    }
+  ]
+}

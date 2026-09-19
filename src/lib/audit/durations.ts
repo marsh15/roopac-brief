@@ -143,19 +143,7 @@ export function extractDurations(text: string): DurationMatch[] {
   DURATION_RE.lastIndex = 0;
   let m: RegExpExecArray | null;
   while ((m = DURATION_RE.exec(haystack)) !== null) {
-    const min = parseNumber(m[1]);
-    const max = m[2] !== undefined ? parseNumber(m[2]) : min;
-    const isWeeks = /^week/i.test(m[4]);
-    const scale = isWeeks ? 7 : 1;
-    matches.push({
-      phrase: m[0].trim(),
-      index: m.index,
-      duration: {
-        minDays: min * scale,
-        maxDays: max * scale,
-        unit: m[3] ? "business" : "calendar",
-      },
-    });
+    matches.push({ phrase: m[0].trim(), index: m.index, duration: toDuration(m) });
   }
   DURATION_RE.lastIndex = 0;
   return matches;

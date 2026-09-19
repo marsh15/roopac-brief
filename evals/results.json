@@ -1,14 +1,14 @@
 {
   "metrics": {
-    "runAt": "2026-09-19T16:09:59.360Z",
+    "runAt": "2026-09-19T16:25:42.090Z",
     "cases": 27,
-    "extractionAccuracy": 0.9897,
-    "extractionFieldsChecked": 97,
+    "extractionAccuracy": 1,
+    "extractionFieldsChecked": 98,
     "missingDetectionRate": 1,
     "hallucinatedProducts": 0,
     "moqDetectionRate": 1,
     "similarJobRelevance": 1,
-    "failedCases": 1
+    "failedCases": 0
   },
   "results": [
     {
@@ -81,7 +81,7 @@
           "carry bags"
         ],
         "sizes": [],
-        "usage": "saree packing",
+        "usage": null,
         "positioning": "premium",
         "colours": 2,
         "deadline": null,
@@ -109,6 +109,10 @@
         },
         {
           "name": "extract.industry",
+          "pass": true
+        },
+        {
+          "name": "extract.city",
           "pass": true
         },
         {
@@ -140,7 +144,7 @@
         "language": "tamil",
         "industry": "Saree Boutique",
         "industryRaw": "சேலை கடை",
-        "city": "கோவை",
+        "city": "Coimbatore",
         "quantity": 500,
         "families": [
           "paper-bag"
@@ -157,9 +161,9 @@
         "artwork": {
           "mentioned": true,
           "kinds": [],
-          "note": "லோகோ அட்டாச் செய்துள்ளேன்"
+          "note": "லோகோ அட்டச் பண்ணிட்டேன்"
         },
-        "notes": null
+        "notes": "விலை என்ன?"
       },
       "topSlugs": [
         "classic-on-butterfly",
@@ -395,7 +399,7 @@
       "extract": {
         "language": "english",
         "industry": "Miscellaneous",
-        "industryRaw": null,
+        "industryRaw": "garments brand",
         "city": "Tirupur",
         "quantity": 500,
         "families": [
@@ -405,15 +409,15 @@
           "woven labels"
         ],
         "sizes": [],
-        "usage": "for my garments brand",
+        "usage": "for my garments",
         "positioning": null,
         "colours": null,
         "deadline": null,
         "deadlineText": null,
         "artwork": {
-          "mentioned": true,
+          "mentioned": false,
           "kinds": [],
-          "note": "logo iruku"
+          "note": null
         },
         "notes": null
       },
@@ -443,13 +447,13 @@
       "extract": {
         "language": "english",
         "industry": "Food (Non-direct / Cafe)",
-        "industryRaw": null,
+        "industryRaw": "cafe",
         "city": null,
         "quantity": 200,
         "families": [],
         "familiesRaw": [],
         "sizes": [],
-        "usage": "custom coffee mugs",
+        "usage": "coffee mugs",
         "positioning": null,
         "colours": null,
         "deadline": null,
@@ -613,7 +617,7 @@
         "artwork": {
           "mentioned": true,
           "kinds": [
-            "file"
+            "drive_link"
           ],
           "note": "logo is at droppbox.com/logo-final.png"
         },
@@ -661,7 +665,7 @@
       "extract": {
         "language": "tanglish",
         "industry": "Saree Boutique",
-        "industryRaw": null,
+        "industryRaw": "boutique",
         "city": "Erode",
         "quantity": 300,
         "families": [
@@ -713,7 +717,7 @@
       "extract": {
         "language": "english",
         "industry": null,
-        "industryRaw": null,
+        "industryRaw": "return policy",
         "city": null,
         "quantity": null,
         "families": [],
@@ -729,7 +733,7 @@
           "kinds": [],
           "note": null
         },
-        "notes": "Customer inquiring about return policy for defects."
+        "notes": null
       },
       "topSlugs": []
     },
@@ -963,7 +967,7 @@
         "artwork": {
           "mentioned": true,
           "kinds": [],
-          "note": "logo"
+          "note": "with our logo"
         },
         "notes": null
       },
@@ -1005,7 +1009,7 @@
       "extract": {
         "language": "tanglish",
         "industry": "Mobile Shops",
-        "industryRaw": null,
+        "industryRaw": "Mobile shop",
         "city": "Coimbatore",
         "quantity": 1000,
         "families": [
@@ -1085,7 +1089,7 @@
           "kinds": [],
           "note": null
         },
-        "notes": "launching soon"
+        "notes": null
       },
       "topSlugs": [
         "black-poly-mailer",
@@ -1199,7 +1203,7 @@
         "positioning": null,
         "colours": null,
         "deadline": "2023-10-15",
-        "deadlineText": null,
+        "deadlineText": "by October 15",
         "artwork": {
           "mentioned": false,
           "kinds": [],
@@ -1236,8 +1240,8 @@
       ],
       "extract": {
         "language": "english",
-        "industry": "Miscellaneous",
-        "industryRaw": null,
+        "industry": null,
+        "industryRaw": "exploring options",
         "city": null,
         "quantity": 300,
         "families": [
@@ -1333,8 +1337,7 @@
       "assertions": [
         {
           "name": "extract.language",
-          "pass": false,
-          "detail": "expected \"mixed\", got \"tanglish\""
+          "pass": true
         },
         {
           "name": "extract.quantity",
@@ -1350,9 +1353,9 @@
         }
       ],
       "extract": {
-        "language": "tanglish",
+        "language": "mixed",
         "industry": "Saree Boutique",
-        "industryRaw": null,
+        "industryRaw": "boutique",
         "city": "Madurai",
         "quantity": 500,
         "families": [

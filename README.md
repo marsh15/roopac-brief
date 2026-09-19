@@ -69,24 +69,26 @@ minimum), and similar-job relevance (expected industry in the top 5).
 | Metric | Result |
 |---|---|
 | Cases | 27 (English / Tamil / Tanglish / mixed + edge cases) |
-| Extraction accuracy | **99.0%** (96/97 asserted fields) |
+| Extraction accuracy | **100%** (98/98 asserted fields) |
 | Missing-field detection | **100%** |
 | Hallucinated products | **0** (asserted every run) |
 | MOQ-violation detection | **100%** |
 | Similar-job relevance | **100%** |
 
 The first three cases are byte-identical to the three UI samples, so the demo can never silently diverge from
-the evals.
+the evals. `language` on mixed-script messages is decided deterministically (Tamil Unicode-range detection in
+`correctLanguage()`) after live evals showed gpt-4o-mini flips the tanglish/mixed boundary run-to-run.
 
 ## Known failure modes
 
-Observed during tuning; all are extraction (the only model-touched stage that reads customer intent), all are
-caught by the eval suite, and none can produce a wrong product fact (matching is deterministic):
+All are extraction (the only model-touched stage that reads customer intent); none can produce a wrong product
+fact (matching is deterministic).
 
-1. **Tanglish and script-mixing.** `language` is the noisiest field: pure Tanglish is occasionally labelled
-   "tamil", and heavily mixed Tamil-script + Latin messages read as "tanglish" instead of "mixed" (the one
-   failing case in the recorded baseline). Mitigation: language only affects the reply draft's register, never
-   product facts. Accepted limitation.
+1. **Language on code-mixed text — fixed deterministically.** The model flip-flopped between "tanglish" and
+   "mixed" across runs on the same messages. Script presence is a pure function (Unicode range test), so
+   `correctLanguage()` now decides mixed/tamil deterministically and leaves only english-vs-tanglish word
+   knowledge to the model. Residual risk: an English message with zero Tamil words could be labelled tanglish
+   — visible in the brief's language row, harmless downstream.
 2. **Written-out quantities.** Quantity words are sometimes noisy. Mitigation: quantities below a family's
    MOQ always surface as a flag, so a misheard quantity is visible, never silent.
 3. **"Premium" over-mapping.** A premium positioning mention can occasionally attach to an adjacent family

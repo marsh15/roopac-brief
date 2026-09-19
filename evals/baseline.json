@@ -1,5 +1,5 @@
 {
-  "extractionAccuracy": 0.9897,
+  "extractionAccuracy": 1,
   "missingDetectionRate": 1,
   "hallucinatedProducts": 0,
   "moqDetectionRate": 1,

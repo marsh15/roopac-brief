@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { extractRequirements, ExtractionError } from "./extract";
+import { extractRequirements, correctLanguage, ExtractionError } from "./extract";
 import { makeEnquiryExtractSchema } from "./schema";
 import { getFamilySlugs } from "../data/loaders";
 
@@ -49,6 +49,28 @@ describe("EnquiryExtract schema strictness", () => {
   it("rejects a non-integer quantity", async () => {
     const schema = makeEnquiryExtractSchema(await getFamilySlugs());
     expect(() => schema.parse({ ...validExtract, quantity: 12.5 })).toThrow();
+  });
+});
+
+describe("correctLanguage (deterministic script correction)", () => {
+  it("Tamil script + Latin letters → mixed, whatever the model said", () => {
+    expect(correctLanguage("Vanakkam, எனக்கு 500 bags venum", "tanglish")).toBe("mixed");
+    expect(correctLanguage("Vanakkam, எனக்கு 500 bags venum", "mixed")).toBe("mixed");
+  });
+
+  it("Tamil script only → tamil", () => {
+    expect(correctLanguage("வணக்கம் எனக்கு 500 பேக் வேணும்", "tanglish")).toBe("tamil");
+  });
+
+  it("Latin only keeps the model's english-vs-tanglish word knowledge call", () => {
+    expect(correctLanguage("enaku 500 bag venum", "tanglish")).toBe("tanglish");
+    expect(correctLanguage("I need 500 paper bags", "english")).toBe("english");
+  });
+
+  it("a tamil/mixed vote on Latin-only text coerces to tanglish", () => {
+    // no Tamil script exists, so the model must have read Tamil words in Latin
+    expect(correctLanguage("Enaku 300 vogue bag venum, next month ku", "mixed")).toBe("tanglish");
+    expect(correctLanguage("Enaku 300 vogue bag venum, next month ku", "tamil")).toBe("tanglish");
   });
 });
 

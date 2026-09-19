@@ -50,7 +50,8 @@ export async function extractRequirements(
         system: SYSTEM,
         prompt: message,
       });
-      return schema.parse(object);
+      const parsed = schema.parse(object);
+      return { ...parsed, language: correctLanguage(message, parsed.language) };
     } catch (err) {
       if (err instanceof MissingApiKeyError) throw new ExtractionError("missing_key", err.message);
       lastError = err;
@@ -60,4 +61,23 @@ export async function extractRequirements(
   if (NoObjectGeneratedError.isInstance(lastError))
     throw new ExtractionError("no_object", "The model could not produce a valid extraction after a retry.");
   throw new ExtractionError("api", lastError instanceof Error ? lastError.message : String(lastError));
+}
+
+/**
+ * Script-based language correction — pure function over the raw message.
+ * gpt-4o-mini is unstable on the tanglish/mixed boundary (it flips both ways
+ * across runs), but the Tamil-script test is deterministic: Unicode U+0B80–U+0BFF.
+ * Only the english-vs-tanglish call (Tamil words in Latin script — word
+ * knowledge) stays with the model.
+ */
+export function correctLanguage(message: string, modelLanguage: EnquiryExtract["language"]): EnquiryExtract["language"] {
+  const hasTamilScript = /[\u0B80-\u0BFF]/.test(message);
+  const hasLatinLetters = /[A-Za-z]/.test(message);
+  if (hasTamilScript && hasLatinLetters) return "mixed";
+  if (hasTamilScript) return "tamil";
+  // Latin-only: the model owns english-vs-tanglish (word knowledge). A
+  // tamil/mixed vote on Latin-only text means it read Tamil words in Latin
+  // script — tanglish is the only consistent label.
+  if (modelLanguage === "tamil" || modelLanguage === "mixed") return "tanglish";
+  return modelLanguage;
 }

@@ -51,10 +51,11 @@ export const CASES: EvalCase[] = [
   {
     id: "fixture-tamil",
     message:
-      "வணக்கம், எனக்கு கோவையில் புதிய சேலை கடை திறக்கும். அதற்கு 500 பேப்பர் பேக் வேணும், லோகோ அட்டாச் செய்துள்ளேன். விலை என்ன?",
+      "வணக்கம், எனக்கு கோவையில் புதிய சேலை கடை திறக்கப் போகுது. அதுக்கு 500 பேப்பர் பேக் வேணும், லோகோ அட்டச் பண்ணிட்டேன். விலை என்ன?",
     expect: {
       language: "tamil",
       industry: "Saree Boutique",
+      city: "Coimbatore",
       quantity: 500,
       families: ["paper-bag"],
     },

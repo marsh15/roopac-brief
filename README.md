@@ -19,32 +19,11 @@ validates MOQs and never invents numbers). This prototype automates that handoff
 
 ## How it works
 
-```
-                    ┌──────────────────────────── the LLM touches exactly 3 places ───┐
-                    │                                                                  │
-enquiry text ──────►│ ① extractRequirements   ──►  EnquiryExtract (all-nullable)       │
-artwork file/link   │      OpenAI structured output, temperature 0, retry once         │
-                    │                                                                  │
-                    │ ② artwork intent notes (inside the reply draft's grounding)      │
-                    │                                                                  │
-                    │ ③ draftReply - WhatsApp draft, grounded in the pipeline JSON,    │
-                    │    post-checked: every product named must be in the rec set      │
-                    └──────────────────────────────────────────────────────────────────┘
-                                   │ deterministic code over the snapshot ↓
-                    ┌──────────────┴────────────────────────────────────────────────────┐
-                    │ matchProducts()      ranked recommendations, per-fact evidence,   │
-                    │                      MOQ/colour violations as flags, no-match     │
-                    │ similarJobs()        industry/city/family overlap over 427 jobs   │
-                    │ computeMissing()     declarative required-fields table per family │
-                    │ timelineCheck()      required date vs that product's lead time    │
-                    │ renderBrief()        plain-text ROOPAC JOB BRIEF (traceable)      │
-                    │ audit rules          print-method & turnaround contradiction scan │
-                    └───────────────────────────────────────────────────────────────────┘
-```
+![From WhatsApp enquiry to approved job brief](docs/enquiry-pipeline.svg)
 
-Grounding data is a committed snapshot (`data/*.json`), built once by `npm run snapshot` from roopac.com, with
-source URLs preserved per product and per portfolio record. There is no database and no fake match percentage;
-each recommendation shows the evidence checklist behind it.
+The model touches exactly three places: `extractRequirements` (one structured call, temperature 0, retried once), the artwork intent notes that ground the reply draft, and `draftReply`. Everything else is deterministic code over a committed snapshot of roopac.com (`data/*.json`, built once by `npm run snapshot`, source URLs preserved per product and per portfolio record). There is no database and no fake match percentage; each recommendation shows the evidence checklist behind it.
+
+An explorable version of the diagram (dark/light themes, pan/zoom, relationship tracing) is at [docs/enquiry-pipeline.html](docs/enquiry-pipeline.html).
 
 ## The three surfaces
 

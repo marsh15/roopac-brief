@@ -1,0 +1,334 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "From WhatsApp enquiry to approved job brief",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "views": [
+      {
+        "id": "main-path",
+        "label": "Enquiry to approval",
+        "focus": [
+          "enquiry",
+          "extract",
+          "match",
+          "render",
+          "draft",
+          "approve"
+        ],
+        "note": "The happy path from one message to an approved reply."
+      },
+      {
+        "id": "llm-touches",
+        "label": "Only 3 LLM touches",
+        "focus": [
+          "artwork",
+          "extract",
+          "artworkNotes",
+          "draft"
+        ],
+        "note": "Everything the model does: extraction, artwork notes, drafting."
+      },
+      {
+        "id": "deterministic-core",
+        "label": "Deterministic core",
+        "focus": [
+          "snapshot",
+          "match",
+          "timeline",
+          "insights",
+          "render"
+        ],
+        "note": "Pure functions over the committed snapshot, checkable line by line."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "people",
+      "label": "People"
+    },
+    {
+      "id": "llm",
+      "label": "LLM, the model's only three touches"
+    },
+    {
+      "id": "code",
+      "label": "Deterministic code"
+    }
+  ],
+  "phases": [
+    {
+      "id": "understand",
+      "label": "Understand",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "ground",
+      "label": "Ground in the catalogue",
+      "fromCol": 2,
+      "toCol": 4
+    },
+    {
+      "id": "deliver",
+      "label": "Draft + approve",
+      "fromCol": 5,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "enquiry",
+    "extract",
+    "match",
+    "render",
+    "draft",
+    "approve"
+  ],
+  "semanticChecks": {
+    "allowedRoots": [
+      "enquiry",
+      "artwork",
+      "snapshot"
+    ],
+    "allowedTerminals": [
+      "approve"
+    ],
+    "requiredEdges": [
+      {
+        "from": "extract",
+        "to": "match"
+      },
+      {
+        "from": "match",
+        "to": "render"
+      },
+      {
+        "from": "render",
+        "to": "draft"
+      },
+      {
+        "from": "draft",
+        "to": "approve"
+      }
+    ],
+    "requiredPaths": [
+      {
+        "from": "enquiry",
+        "to": "approve"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "enquiry",
+      "lane": "people",
+      "col": 0,
+      "type": "external",
+      "label": "WhatsApp enquiry",
+      "sublabel": "English, Tamil, or Tanglish",
+      "width": 140
+    },
+    {
+      "id": "artwork",
+      "lane": "people",
+      "col": 1,
+      "type": "external",
+      "label": "Artwork",
+      "sublabel": "file or link",
+      "width": 120
+    },
+    {
+      "id": "approve",
+      "lane": "people",
+      "col": 5,
+      "type": "security",
+      "label": "Human approval",
+      "sublabel": "never auto-sent",
+      "width": 150
+    },
+    {
+      "id": "extract",
+      "lane": "llm",
+      "col": 2,
+      "type": "cloud",
+      "label": "extractRequirements",
+      "sublabel": "temp 0, retry once",
+      "width": 150
+    },
+    {
+      "id": "artworkNotes",
+      "lane": "llm",
+      "col": 3,
+      "type": "cloud",
+      "label": "Artwork intent notes",
+      "sublabel": "grounding for the draft",
+      "width": 150
+    },
+    {
+      "id": "draft",
+      "lane": "llm",
+      "col": 5,
+      "type": "cloud",
+      "label": "draftReply",
+      "sublabel": "grounded, post-checked",
+      "width": 150
+    },
+    {
+      "id": "snapshot",
+      "lane": "code",
+      "col": 1,
+      "type": "database",
+      "label": "Committed snapshot",
+      "sublabel": "data/*.json, source URLs kept",
+      "width": 156
+    },
+    {
+      "id": "match",
+      "lane": "code",
+      "col": 2,
+      "type": "backend",
+      "label": "matchProducts()",
+      "sublabel": "evidence-ranked picks",
+      "width": 150
+    },
+    {
+      "id": "timeline",
+      "lane": "code",
+      "col": 3,
+      "type": "backend",
+      "label": "timelineCheck()",
+      "sublabel": "deadline vs lead time",
+      "width": 150
+    },
+    {
+      "id": "insights",
+      "lane": "code",
+      "col": 4,
+      "type": "backend",
+      "label": "Recall + missing checks",
+      "sublabel": "similarJobs() + computeMissing()",
+      "width": 168
+    },
+    {
+      "id": "render",
+      "lane": "code",
+      "col": 5,
+      "type": "backend",
+      "label": "renderBrief()",
+      "sublabel": "traceable plain-text brief",
+      "width": 150
+    }
+  ],
+  "edges": [
+    {
+      "id": "enquiry-extract",
+      "from": "enquiry",
+      "to": "extract"
+    },
+    {
+      "id": "artwork-notes",
+      "from": "artwork",
+      "to": "artworkNotes"
+    },
+    {
+      "id": "extract-match",
+      "from": "extract",
+      "to": "match",
+      "label": "EnquiryExtract",
+      "variant": "emphasis"
+    },
+    {
+      "id": "extract-insights",
+      "from": "extract",
+      "to": "insights",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "snapshot-match",
+      "from": "snapshot",
+      "to": "match",
+      "label": "products + portfolio",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "match-timeline",
+      "from": "match",
+      "to": "timeline",
+      "label": "top-pick lead time",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "timeline-render",
+      "from": "timeline",
+      "to": "render",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "insights-render",
+      "from": "insights",
+      "to": "render",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "match-render",
+      "from": "match",
+      "to": "render",
+      "variant": "emphasis",
+      "route": "bottom-channel"
+    },
+    {
+      "id": "notes-draft",
+      "from": "artworkNotes",
+      "to": "draft",
+      "label": "artwork intent"
+    },
+    {
+      "id": "render-draft",
+      "from": "render",
+      "to": "draft",
+      "label": "pipeline JSON = the only grounding",
+      "variant": "emphasis"
+    },
+    {
+      "id": "draft-approve",
+      "from": "draft",
+      "to": "approve",
+      "label": "WhatsApp draft",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The model touches exactly 3 places",
+      "items": [
+        "① extractRequirements: temp 0, retried once",
+        "② artwork intent notes: draft grounding",
+        "③ draftReply: grounded + post-checked"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Grounding",
+      "items": [
+        "Committed snapshot of roopac.com: source URLs preserved",
+        "Evidence checklists, no match percentages, no invented prices"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Human gate",
+      "items": [
+        "The WhatsApp draft is never auto-sent",
+        "Post-check, one retry, then deterministic template fallback"
+      ]
+    }
+  ]
+}
